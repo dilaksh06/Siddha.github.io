@@ -6,13 +6,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $notes = $_POST['exampleFormControlTextarea1'] ?? '';
     $kyc = $_POST['exampleFormControlTextarea2'] ?? '';
 
+    // Define the folder path
+    $folder_path = 'collcdata/';
 
     // Create folder name using the current date and herb name
-    $folder_name = date('Y-m-d') . '-' . date('H-i-s') . '-' . $herb_name;
+    $folder_name = $folder_path . date('Y-m-d') . '-' . date('H-i-s') . '-' . $herb_name;
 
     // Create folder if it doesn't exist
     if (!file_exists($folder_name)) {
-        mkdir($folder_name);
+        mkdir($folder_name, 0777, true); // Set permissions as needed (0777 for example)
     }
 
     // Handle file uploads
@@ -26,17 +28,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         // Create and write content to the text file
-    $text_file_content = "Herb Name: " . $herb_name . "\r\n\r\nNotes: " . $notes. "\r\n\r\ndetail shared by:". $kyc;
-    file_put_contents($folder_name . '/herb_info.txt', $text_file_content);
+        $text_file_content = "Herb Name: " . $herb_name . "\r\n\r\nNotes: " . $notes. "\r\n\r\nDetail shared by: ". $kyc;
+        file_put_contents($folder_name . '/herb_info.txt', $text_file_content);
+
         // Set success message
         $message = "Images successfully uploaded!";
-
-        
     }
-   
+
     header("Location: index.html");
     exit();
-
 }
 ?>
-
