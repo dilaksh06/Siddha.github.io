@@ -8,7 +8,7 @@
 .container-fluid {
   width: auto;
   max-width: 100%;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(img/6.png);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(img/back.png);
   background-position: center;
   background-size: cover;
   padding-left: 8%;
